@@ -2,10 +2,13 @@ const cellElements = document.querySelectorAll("[data-cell]");
 let circleTurn; /* it will check whose turn it is. it is o's turn if true or x's turn if false*/
 const x_class = "x";
 const o_class = "o";
+const red = "red";
+const green = "green";
 let board = document.getElementById("board");
 let winningMessage = document.querySelector("[data-winning-Message-Text]");
 let winningMessageElement = document.getElementById("winningMessage");
 let restartButton = document.getElementById("restartButton");
+let message = document.getElementById("message");
 const winningCombination = [
     [0,1,2],
     [3,4,5],
@@ -72,11 +75,22 @@ function swapTurns(){
 function setBoardHoverClass(){
     board.classList.remove(x_class);
     board.classList.remove(o_class);
+    board.classList.remove(red);
+    board.classList.remove(green);
+    message.classList.remove(red);
+    message.classList.remove(green);
+    message.innerText="";
     if(circleTurn){
         board.classList.add(o_class);
+        board.classList.add(green);
+        message.classList.add(green);
+        message.innerText="Vaccine's Turn";
     }
     else{
         board.classList.add(x_class);
+        board.classList.add(red);
+        message.classList.add(red);
+        message.innerText="Corona virus's Turn";
     }
 } //always call it after swap turns to show the current player's name
 
@@ -94,10 +108,10 @@ function endGame(draw){
     }
     else{
         if(circleTurn){
-            winningMessage.innerText = "O wins";
+            winningMessage.innerText = "Vaccine wins";
         }
         else{
-            winningMessage.innerText = "X wins";
+            winningMessage.innerText = "Covid wins";
         }
     }
 

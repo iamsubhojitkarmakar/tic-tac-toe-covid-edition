@@ -58,58 +58,24 @@ body{
     cursor: not-allowed;
 } /* making not allowed cursor over already placed symbols*/
 
-.cell.x::before,
-.cell.x::after,
-.board.x .cell:not(.x):not(.o):hover::before,
-.board.x .cell:not(.x):not(.o):hover::after{
-    content: "";
-    position: absolute;
-    width: calc(var(--mark-size)*0.15);
-    height: var(--mark-size);
-    background-color: black;
-} /* creating hover effect of x and two black bars to make it like x using before and after pseudo elements*/
 
-.board.x .cell:not(.x):not(.o):hover::before,
-.board.x .cell:not(.x):not(.o):hover::after{
-    background-color: lightgray;
-}/* giving hover x effect a light grey colour*/
+.cell.x{
+    background-image: url("media/covid.png");
+}
 
-.cell.x::before,
-.board.x .cell:not(.x):not(.o):hover::before{
-    transform: rotate(45deg);
-} /* rotating before element 45 degrees left*/
+.cell.o{
+    background-image: url("media/vaccine.png");
+}
 
-.cell.x::after,
-.board.x .cell:not(.x):not(.o):hover::after{
-    transform: rotate(-45deg);
-} /* rotating after element 45 degrees right*/
+.board.x .cell:not(.x):not(.o):hover{
+    background-image: url("media/covid.png");
+    opacity: 0.5;
+} /*giving x hover effect of covid*/
 
-.cell.o::before,
-.cell.o::after,
-.board.o .cell:not(.x):not(.o):hover::before,
-.board.o .cell:not(.x):not(.o):hover::after{
-    content:"";
-    position: absolute;
-    border-radius: 50%;
-} /* creating codes to makehover effect of o and it like o using before and after pseudo elements*/
-
-.cell.o::before,
-.board.o .cell:not(.x):not(.o):hover::before{
-    width: var(--mark-size);
-    height: var(--mark-size);
-    background-color: black;
-} /* creating outer circle*/
-
-.cell.o::after,
-.board.o .cell:not(.x):not(.o):hover::after{
-    width: calc(var(--mark-size)*0.7);
-    height: calc(var(--mark-size)*0.7);
-    background-color: white;
-} /* creating inner circle*/
-
-.board.o .cell:not(.x):not(.o):hover::before{
-    background-color: lightgray;
-} /* changing the hover colour to light grey*/
+.board.o .cell:not(.x):not(.o):hover{
+    background-image: url("media/vaccine.png");
+    opacity: 0.5;
+}  /*giving o hover effect of vaccine*/
 
 .winningMessage{
     position: fixed;
@@ -143,4 +109,38 @@ body{
 
 .winningMessage.show{
     display: flex;
+}
+
+.board.red{
+    background-color: rgb(253, 77, 77);
+}/* giving board a colour red */
+
+
+.board.green{
+    background-color: rgb(82, 252, 82);
+}/* giving board a colour green when it is vaccines turn*/
+
+.heading{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.message.red{
+    background-color: rgb(253, 77, 77);
+    font-size: 24px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+} /*giving whose turn message*/
+.message.green{
+    background-color: rgb(82, 252, 82);
+    font-size: 24px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+    position: absolute;
+    top: 25px;
+    right: 25px;
 }
