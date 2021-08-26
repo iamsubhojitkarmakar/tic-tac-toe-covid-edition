@@ -1,0 +1,146 @@
+*,*::after,*::before{ 
+    box-sizing: border-box; 
+} /* selecting everything and making it border box */
+
+:root{
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size)*0.9);
+} /* making css variables to use it in my code*/
+
+body{
+    margin: 0px;
+} /* making the margin of the body 0 pixels*/
+
+.board{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+} /* this is only the code of the div named board */
+
+.cell{
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+} /*creaing every cell with css variables*/
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top: transparent;
+} /* clearing the top border of top 3 cells*/
+
+.cell:nth-child(3n+1){
+    border-left: transparent;
+} /* clearing left border of cells*/
+
+.cell:nth-child(3n+3){
+    border-right: transparent;
+} /* clearing right border of cells*/
+
+.cell:last-child,
+.cell:nth-last-child(2),
+.cell:nth-last-child(3){
+    border-bottom: transparent;
+} /* clearing bottom 3 borders here*/
+
+.cell.x,
+.cell.o{
+    cursor: not-allowed;
+} /* making not allowed cursor over already placed symbols*/
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after{
+    content: "";
+    position: absolute;
+    width: calc(var(--mark-size)*0.15);
+    height: var(--mark-size);
+    background-color: black;
+} /* creating hover effect of x and two black bars to make it like x using before and after pseudo elements*/
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after{
+    background-color: lightgray;
+}/* giving hover x effect a light grey colour*/
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before{
+    transform: rotate(45deg);
+} /* rotating before element 45 degrees left*/
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after{
+    transform: rotate(-45deg);
+} /* rotating after element 45 degrees right*/
+
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after{
+    content:"";
+    position: absolute;
+    border-radius: 50%;
+} /* creating codes to makehover effect of o and it like o using before and after pseudo elements*/
+
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before{
+    width: var(--mark-size);
+    height: var(--mark-size);
+    background-color: black;
+} /* creating outer circle*/
+
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after{
+    width: calc(var(--mark-size)*0.7);
+    height: calc(var(--mark-size)*0.7);
+    background-color: white;
+} /* creating inner circle*/
+
+.board.o .cell:not(.x):not(.o):hover::before{
+    background-color: lightgray;
+} /* changing the hover colour to light grey*/
+
+.winningMessage{
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color:rgba(0, 0, 0, 0.9);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+} /* making the winning screen*/
+
+#restartButton{
+    font-size: 26px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25%;
+    padding: 5px;
+    cursor: pointer;
+} /* making and designing restart button*/
+
+#restartButton:hover{
+    background-color: black;
+    border-color: white;
+    color: white;
+} /* giving border a hover effect*/
+
+.winningMessage.show{
+    display: flex;
+}
